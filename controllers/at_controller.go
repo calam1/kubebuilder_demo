@@ -83,6 +83,7 @@ func (r *AtReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Re
 		if diff > 0 {
 			// not yet time to execute, wait until scheduled time
 			// return ctrl.Result{RequeueAfter: diff * time.Second}, nil
+			// there was a bug with the above line, I think it made the wait time a lot longer by multiplying by time.Second, at least that was my experience
 			return ctrl.Result{RequeueAfter: diff}, nil
 		}
 
